@@ -18,7 +18,12 @@ public class MyFileDatabase {
   public MyFileDatabase(int flag, String filePath) {
     this.filePath = filePath;
     if (flag == 0) {
-      this.departmentMapping = deSerializeObjectFromFile();
+      try {
+        this.departmentMapping = deSerializeObjectFromFile();
+      } catch (Exception e) {
+        System.err.println("Error deserializing file: " + e.getMessage());
+        e.printStackTrace();
+      }
     }
   }
 
