@@ -1,0 +1,107 @@
+Course.java
+1.
+Type: Logic error
+Place: Course Function
+Desc: Changed enrolledStudentCount to zero from 500
+
+2.
+Type: Functional bug
+Place: enrollStudent Function
+Desc: added if condition to return true if student is successfully enrolled.
+
+3.
+Type: Functional bug
+Place: dropStudent Function
+Desc: checking if there is prior student is enrolled before dropping the student.
+
+4.
+Type: Functional bug
+Place: getCourseLocation Function
+Desc: Fixed the function to accurately return courseLocation instead of instructorame.
+
+5.
+Type: Functional bug
+Place: getInstructorName Function
+Desc: Fixed the function to accurately return instructorName instead of courseLocation.
+
+6.
+Type: Logical error
+Place: isCourseFull Function
+Desc: Fixed logic to check when course is full.
+
+
+
+Department.java
+
+7.
+Type: Syntax error
+Place: getNumberofMajors Function
+Desc: Removed negative sign as that is invalid syntax.
+
+8.
+Type: Syntax error
+Place: getDepartmentChair Function
+Desc: Removed quotes in return statment as that is invalid synatx.
+
+9.
+Type: Logical error
+Place: dropPersonFromMajor Function
+Desc: added condition to check if number of majors is positive.
+
+10.
+Type: Syntax error
+Place: toString Function
+Desc: Removed quotes in return statment as that is invalid synatx.
+
+
+MyFileDatabase.java
+
+11.
+Type: Null Reference Exception
+Place: MyFileDatabase Constructor
+Desc: Handling the exception using try catch block if there is null reference exception.
+
+
+RouteController.java
+
+12.
+Type: Status Code is Incorrect
+Place: Retrieve Department
+Desc: Changed status code to NOT_FOUND to OK and vice versa according to the logic in if else statement.
+
+13.
+Type:  Status Code is Incorrect
+Place: Retrieve Course
+Desc: Changed HttpStatus code from Forbidden to Ok.
+
+14.
+Type: Syntax Error
+Place: getMajorCountFromDept
+Desc: Removed negative sign besides departmentMapping as the syntax is invalid
+
+15.
+Type: Status Code is Incorrect
+Place: getMajorCountFromDept
+Desc: Changed https status code from Forbidden to Not Found.
+
+16.
+Type: Unused Local Variable(requested Course)
+Place: findCourseTime
+Desc: Used requestedCourse variable to getCourseTimeSlot to return in response.
+
+17.
+Type: StatusCode is Incorrect
+Place: Handle Exception
+Desc: Changed Status Code from Ok to InternalServerError
+
+
+PMD bugs
+
+Type: LooseCoupling
+Desc:Avoid using implementation types like 'HashMap'; use the interface instead
+
+
+Type: ReturnEmptyCollectionRatherThanNull
+Desc: The method 'toString()' is missing an @Override annotation.
+
+
