@@ -1,17 +1,16 @@
 package dev.coms4156.project.individualproject;
 
 import jakarta.annotation.PreDestroy;
-
-import java.util.*;
-
-import org.springframework.boot.*;
+import java.util.HashMap;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * Class contains all the startup logic for the application.
- * <p>
- * DO NOT MODIFY ANYTHING BELOW THIS POINT WITH REGARD TO FUNCTIONALITY
- * YOU MAY MAKE STYLE/REFACTOR MODIFICATIONS AS NEEDED
+ *
+ * <p>DO NOT MODIFY ANYTHING BELOW THIS POINT WITH REGARD TO FUNCTIONALITY
+ * YOU MAY MAKE STYLE/REFACTOR MODIFICATIONS AS NEEDED</p>
  */
 @SpringBootApplication
 public class IndividualProjectApplication implements CommandLineRunner {

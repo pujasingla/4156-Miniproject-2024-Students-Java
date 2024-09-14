@@ -1,16 +1,23 @@
 package dev.coms4156.project.individualproject;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.web.servlet.MockMvc;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * Integration test class for the Router Controller in the application.
+ *
+ */
 @WebMvcTest(RouteController.class)
 public class RouteControllerTests {
 
@@ -21,7 +28,7 @@ public class RouteControllerTests {
 
   @BeforeEach
   public void setUp() {
-     context = SpringApplication.run(IndividualProjectApplication.class, new String[]{"setup"});
+    context = SpringApplication.run(IndividualProjectApplication.class, new String[]{"setup"});
   }
 
   @Test
@@ -42,21 +49,23 @@ public class RouteControllerTests {
   public void testRetrieveCourseIsFound() throws Exception {
     mockMvc.perform(get("/retrieveCourse")
             .param("deptCode", "COMS")
-            .param("courseCode","3251"))
+            .param("courseCode", "3251"))
             .andExpect(status().isOk());
   }
+
   @Test
   public void testRetrieveCourseIsNotFound() throws Exception {
     mockMvc.perform(get("/retrieveCourse")
             .param("deptCode", "COMS")
-            .param("courseCode","1000"))
+            .param("courseCode", "1000"))
             .andExpect(status().isNotFound());
   }
+
   @Test
   public void testRetrieveCourseWhenDeptIsNotFound() throws Exception {
     mockMvc.perform(get("/retrieveCourse")
             .param("deptCode", "MATH")
-            .param("courseCode","1000"))
+            .param("courseCode", "1000"))
             .andExpect(status().isNotFound());
   }
 
@@ -64,7 +73,7 @@ public class RouteControllerTests {
   public void testIsCourseFullWhenCourseIsFull() throws Exception {
     mockMvc.perform(get("/isCourseFull")
             .param("deptCode", "IEOR")
-            .param("courseCode","2500"))
+            .param("courseCode", "2500"))
             .andExpect(status().isOk())
             .andExpect(content().string("true"));
   }
@@ -73,7 +82,7 @@ public class RouteControllerTests {
   public void testIsCourseFullWhenCourseIsNotFull() throws Exception {
     mockMvc.perform(get("/isCourseFull")
             .param("deptCode", "ECON")
-            .param("courseCode","1105"))
+            .param("courseCode", "1105"))
             .andExpect(status().isOk())
             .andExpect(content().string("false"));
   }
@@ -82,7 +91,7 @@ public class RouteControllerTests {
   public void testIsCourseFullWhenDeptIsNotFound() throws Exception {
     mockMvc.perform(get("/isCourseFull")
             .param("deptCode", "MATH")
-            .param("courseCode","1000"))
+            .param("courseCode", "1000"))
             .andExpect(status().isNotFound());
   }
 
@@ -120,7 +129,7 @@ public class RouteControllerTests {
   public void testFindCourseLocation() throws Exception {
     mockMvc.perform(get("/findCourseLocation")
             .param("deptCode", "CHEM")
-            .param("courseCode","3080"))
+            .param("courseCode", "3080"))
             .andExpect(status().isOk())
             .andExpect(content().string("209 HAV is where the course is located."));
   }
@@ -129,7 +138,7 @@ public class RouteControllerTests {
   public void testFindCourseLocationWhenDeptIsNotFound() throws Exception {
     mockMvc.perform(get("/findCourseLocation")
             .param("deptCode", "MATH")
-            .param("courseCode","3080"))
+            .param("courseCode", "3080"))
             .andExpect(status().isNotFound());
   }
 
@@ -137,7 +146,7 @@ public class RouteControllerTests {
   public void testFindCourseLocationWhenCourseIsNotFound() throws Exception {
     mockMvc.perform(get("/findCourseLocation")
             .param("deptCode", "COMS")
-            .param("courseCode","2010"))
+            .param("courseCode", "2010"))
             .andExpect(status().isNotFound());
   }
 
@@ -145,7 +154,7 @@ public class RouteControllerTests {
   public void testFindCourseInstructor() throws Exception {
     mockMvc.perform(get("/findCourseInstructor")
             .param("deptCode", "CHEM")
-            .param("courseCode","3080"))
+            .param("courseCode", "3080"))
             .andExpect(status().isOk())
             .andExpect(content().string("Milan Delor is the instructor for the course."));
   }
@@ -154,7 +163,7 @@ public class RouteControllerTests {
   public void testFindCourseInstructorWhenDeptIsNotFound() throws Exception {
     mockMvc.perform(get("/findCourseInstructor")
             .param("deptCode", "MATH")
-            .param("courseCode","3080"))
+            .param("courseCode", "3080"))
             .andExpect(status().isNotFound());
   }
 
@@ -162,7 +171,7 @@ public class RouteControllerTests {
   public void testFindCourseInstructorWhenCourseIsNotFound() throws Exception {
     mockMvc.perform(get("/findCourseInstructor")
             .param("deptCode", "COMS")
-            .param("courseCode","2010"))
+            .param("courseCode", "2010"))
             .andExpect(status().isNotFound());
   }
 
@@ -170,16 +179,16 @@ public class RouteControllerTests {
   public void testFindCourseTime() throws Exception {
     mockMvc.perform(get("/findCourseTime")
             .param("deptCode", "PHYS")
-            .param("courseCode","2802"))
+            .param("courseCode", "2802"))
             .andExpect(status().isOk())
-            .andExpect(content().string("The course meets at: 10:10-12:00 some time"));
+            .andExpect(content().string("The course meets at: 10:10-12:00"));
   }
 
   @Test
   public void testFindCourseTimeWhenDeptIsNotFound() throws Exception {
     mockMvc.perform(get("/findCourseTime")
             .param("deptCode", "MATH")
-            .param("courseCode","3080"))
+            .param("courseCode", "3080"))
             .andExpect(status().isNotFound());
   }
 
@@ -187,12 +196,9 @@ public class RouteControllerTests {
   public void testFindCourseTimeWhenCourseIsNotFound() throws Exception {
     mockMvc.perform(get("/findCourseTime")
             .param("deptCode", "COMS")
-            .param("courseCode","2010"))
+            .param("courseCode", "2010"))
             .andExpect(status().isNotFound());
   }
-
-  
-
 
 
   @AfterEach
