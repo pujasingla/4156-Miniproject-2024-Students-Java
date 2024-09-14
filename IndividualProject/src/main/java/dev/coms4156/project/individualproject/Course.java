@@ -3,6 +3,13 @@ package dev.coms4156.project.individualproject;
 import java.io.Serial;
 import java.io.Serializable;
 
+/**
+ * Represents a course offered at a university.
+ * <p>
+ * This class includes information about the instructor, course location, time slot,
+ * and the number of students enrolled versus the enrollment capacity.
+ * </p>
+ */
 public class Course implements Serializable {
 
   /**
@@ -27,7 +34,7 @@ public class Course implements Serializable {
    * @return true if the student is successfully enrolled, false otherwise.
    */
   public boolean enrollStudent() {
-    if (enrolledStudentCount < enrollmentCapacity){
+    if (enrolledStudentCount < enrollmentCapacity) {
       enrolledStudentCount++;
       return true;
     }
@@ -40,7 +47,7 @@ public class Course implements Serializable {
    * @return true if the student is successfully dropped, false otherwise.
    */
   public boolean dropStudent() {
-    if (enrolledStudentCount > 0){
+    if (enrolledStudentCount > 0) {
       enrolledStudentCount--;
       return true;
     }
@@ -64,7 +71,8 @@ public class Course implements Serializable {
 
 
   public String toString() {
-    return "\nInstructor: " + instructorName +  "; Location: "  + courseLocation +  "; Time: " + courseTimeSlot;
+    return "\nInstructor: " + instructorName +  "; Location: "  + courseLocation
+        +  "; Time: " + courseTimeSlot;
   }
 
 

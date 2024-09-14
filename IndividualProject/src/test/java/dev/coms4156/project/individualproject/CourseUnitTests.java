@@ -1,11 +1,21 @@
 package dev.coms4156.project.individualproject;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * Unit test class for the Course functionality in the application.
+ *
+ * <p>This class uses {@link SpringBootTest} to load the full application context
+ * for integration testing, and {@link ContextConfiguration} to specify necessary
+ * test-specific configurations.</p>
+ */
 @SpringBootTest
 @ContextConfiguration
 public class CourseUnitTests {
@@ -101,7 +111,7 @@ public class CourseUnitTests {
     for (int i = 0; i < 250; i++) {
       testCourse.enrollStudent();
     }
-    assertTrue(testCourse.isCourseFull(), "Course should be full when enrolled count equals capacity.");
+    assertTrue(testCourse.isCourseFull());
   }
 
   @Test
@@ -109,7 +119,7 @@ public class CourseUnitTests {
     for (int i = 0; i < 251; i++) {
       testCourse.enrollStudent();
     }
-    assertTrue(testCourse.isCourseFull(), "Course should be full when enrolled count exceeds capacity.");
+    assertTrue(testCourse.isCourseFull());
   }
 
 
